@@ -285,7 +285,7 @@ rm -f zpanel.sh
 ajenti_install()
 {
 openport in tcp 8000
-rpm -i http://repo.ajenti.org/ajenti-repo-1.0-1.noarch.rpm 
+rpm -i http://repo.ajenti.org/ajenti-repo-1.0-1.noarch.rpm
 echo "Устанавливаем Ajenti"
 yum -y install ajenti
 echo "Устанавливаем Ajenti V"
@@ -480,11 +480,11 @@ bench_hdd () {
           if [ ${#mb} -eq 2 ]; then let "mb=$mb*1024/100"; else #переводим сотвые долги гигабайт в мегабайты
             if [ ${#mb} -eq 3 ]; then let "mb=$mb*1024/1000"; else #переводим тысячные долги гигабайт в мегабайты
             mb=0
-            fi   
+            fi
           fi
         fi
         let "ioraw=$gb*1024+$mb"
-        else ioraw=$( echo $io | awk 'NR==1 {print $1}' )           
+        else ioraw=$( echo $io | awk 'NR==1 {print $1}' )
         fi
 
         if [ $(echo $io2 | awk '{print $2}') = "GB/s" ] #проверили а не гигабайты ли это
@@ -496,11 +496,11 @@ bench_hdd () {
           if [ ${#mb} -eq 2 ]; then let "mb=$mb*1024/100"; else #переводим сотвые долги гигабайт в мегабайты
             if [ ${#mb} -eq 3 ]; then let "mb=$mb*1024/1000"; else #переводим тысячные долги гигабайт в мегабайты
             mb=0
-            fi   
+            fi
           fi
         fi
         let "ioraw2=$gb*1024+$mb"
-        else ioraw2=$( echo $io2 | awk 'NR==1 {print $1}' )           
+        else ioraw2=$( echo $io2 | awk 'NR==1 {print $1}' )
         fi
 
         if [ $(echo $io3 | awk '{print $2}') = "GB/s" ] #проверили а не гигабайты ли это
@@ -512,16 +512,16 @@ bench_hdd () {
           if [ ${#mb} -eq 2 ]; then let "mb=$mb*1024/100"; else #переводим сотвые долги гигабайт в мегабайты
             if [ ${#mb} -eq 3 ]; then let "mb=$mb*1024/1000"; else #переводим тысячные долги гигабайт в мегабайты
             mb=0
-            fi   
+            fi
           fi
         fi
         let "ioraw3=$gb*1024+$mb"
-        else ioraw3=$( echo $io3 | awk 'NR==1 {print $1}' )           
+        else ioraw3=$( echo $io3 | awk 'NR==1 {print $1}' )
         fi
 
         ioall=$( awk 'BEGIN{print '$ioraw' + '$ioraw2' + '$ioraw3'}' )
         ioavg=$( awk 'BEGIN{print '$ioall'/3}' )
-        
+
         echo "Среднее значение: $ioavg MB/s"
 }
 
@@ -597,14 +597,14 @@ exit
 title_full_len=${#title_full}
 title_len=${#title}
 space=""
-      let "space_len=43-$title_full_len" 
+      let "space_len=43-$title_full_len"
       while [ "${#space}" -le $space_len ]
       do
       space=$space" "
       done
 
 space2=""
-      let "space2_len=30-$title_len" 
+      let "space2_len=30-$title_len"
       while [ "${#space2}" -le $space2_len ]
       do
       space2=$space2" "
@@ -649,7 +649,7 @@ if [ "$osfamily" == "CentOS Linux" ]; then osfamily="CentOS"; fi
 arc=`arch`
 if [ "$arc" == "x86_64" ]; then arc=64 #В теории возможно обозначение "IA-64" и "AMD64", но я не встречал
 else arc=32 #Чтобы не перебирать все возможные IA-32, x86, i686, i586 и т.д.
-fi 
+fi
 
 #определяем версию ядра Linux
 kern=`uname -r | sed -e "s/-/ /" | awk {'print $1'}`
@@ -914,6 +914,7 @@ else
 pick=$chosen
 fi
 
+
 case "$pick" in
 1) #Информация о системе
 chosen=1
@@ -1017,7 +1018,7 @@ fi
     echo "Начинаем обновление ОС..."
     yum update -y
     echo "ОС была успешно обновлена."
-    wait    
+    wait
     ;;
     3) #Установить популярные приложения
     echo "Сечас будут установлены следующие программы:"
@@ -1036,7 +1037,7 @@ fi
     if [ $osver1 -eq 7 ]; then yum -y install net-tools; fi #Только для CentOS 7
     br
     echo "Программы были установлены."
-    wait    
+    wait
     ;;
     4) #Антивирус
     chosen2=4
@@ -1135,7 +1136,7 @@ fi
         y|Y)
         echo "Начинаем настройку iptables"
 		#Проверка на CentOS 7
-        if [ $osver1 -eq 7 ]; then 
+        if [ $osver1 -eq 7 ]; then
         systemctl stop firewalld
 		systemctl mask firewalld
 		myinstall iptables-services | tee > /dev/null
@@ -1247,7 +1248,7 @@ fi
       wait
       ;;
       4) #Перезапустить firewall
-      if [ $osver1 -eq 7 ]; then 
+      if [ $osver1 -eq 7 ]; then
 	  myinstall iptables-services | tee > /dev/null
       fi
       service iptables restart
@@ -1270,7 +1271,7 @@ fi
       ;;
 	  3)
       taffic_type=fwd
-      ;;      
+      ;;
       *)
       echo "Неправильный выбор. Аварийный выход."
       wait
@@ -1323,7 +1324,7 @@ fi
       	;;
 	  	3)
       	section=FORWARD
-      	;;      
+      	;;
       	*)
       	echo "Неправильный выбор. Аварийный выход."
       	wait
@@ -1363,7 +1364,7 @@ fi
     case "$pick" in
 		1) #Проверить запущен ли планировщик (cron)
 		installed crond
-		if [ $exist == false ]; then 
+		if [ $exist == false ]; then
 			echo "Сервис Cron не установлен. Установить?"
 			myread_yn pick
 			case "$pick" in
@@ -1403,7 +1404,7 @@ fi
 					br
 					wait
 					;;
-				esac	
+				esac
 				;;
 			esac
 		fi
@@ -1451,37 +1452,37 @@ fi
 				;;
 				2)
 				echo "*/30 * * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 30 минут"					
+				echo "Готово. Задание будет выполняться каждые 30 минут"
 				;;
 				3)
 				echo "*/20 * * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 20 минут"				
+				echo "Готово. Задание будет выполняться каждые 20 минут"
 				;;
 				4)
 				echo "*/15 * * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 15 минут"				
+				echo "Готово. Задание будет выполняться каждые 15 минут"
 				;;
 				5)
 				echo "*/10 * * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 10 минут"				
+				echo "Готово. Задание будет выполняться каждые 10 минут"
 				;;
 				6)
 				echo "*/5 * * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 5 минут"				
+				echo "Готово. Задание будет выполняться каждые 5 минут"
 				;;
 				7)
 				echo "*/2 * * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 2 минуты"				
+				echo "Готово. Задание будет выполняться каждые 2 минуты"
 				;;
 				8)
 				echo "* * * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждую минуту"				
+				echo "Готово. Задание будет выполняться каждую минуту"
 				;;
 				0)
 				;;
 				*)
 				echo "Неправильный выбор..."
-				;;				
+				;;
 			esac
 			;;
 			3)
@@ -1515,29 +1516,29 @@ fi
 				;;
 				2)
 				echo "0 */12 * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 12 часов"					
+				echo "Готово. Задание будет выполняться каждые 12 часов"
 				;;
 				3)
 				echo "0 */8 * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 8 часов"					
+				echo "Готово. Задание будет выполняться каждые 8 часов"
 				;;
 				4)
 				echo "0 */6 * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 6 часов"					
+				echo "Готово. Задание будет выполняться каждые 6 часов"
 				;;
 				5)
 				echo "0 */4 * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 4 часа"					
+				echo "Готово. Задание будет выполняться каждые 4 часа"
 				;;
 				6)
 				echo "0 */2 * * * $cron_task" >> /var/spool/cron/$(whoami)
-				echo "Готово. Задание будет выполняться каждые 2 часа"					
+				echo "Готово. Задание будет выполняться каждые 2 часа"
 				;;
 				0)
 				;;
 				*)
 				echo "Неправильный выбор..."
-				;;	
+				;;
 			esac
 			;;
 			4)
@@ -1622,7 +1623,7 @@ fi
 		0) #Выйти на уровень вверх
 		chosen2=0
 		;;
-	esac	
+	esac
     ;;
     7) #Установить часовой пояс
     my_clear
@@ -1804,7 +1805,7 @@ myread_dig pick
           wait
           ;;
         esac
-        ;; 
+        ;;
       esac
       ;;
       n|N|т|Т)
@@ -1852,7 +1853,7 @@ myread_dig pick
           wait
           ;;
         esac
-        ;; 
+        ;;
       esac
       ;;
       n|N|т|Т)
@@ -1900,7 +1901,7 @@ myread_dig pick
           wait
           ;;
         esac
-        ;; 
+        ;;
       esac
       ;;
       n|N|т|Т)
@@ -1947,7 +1948,7 @@ myread_dig pick
           wait
           ;;
         esac
-        ;; 
+        ;;
       esac
       ;;
       n|N|т|Т)
@@ -2033,7 +2034,7 @@ END
           echo "localip $ip" >> /etc/pptpd.conf
           echo "remoteip 10.1.0.1-100" >> /etc/pptpd.conf
           #autostart pptpd
-          chkconfig pptpd on          
+          chkconfig pptpd on
           # adding new user
           echo "$u * $p *" >> /etc/ppp/chap-secrets
           # правим mtu для 10 ppp-юзеров
@@ -2080,7 +2081,7 @@ END
     edit /etc/ppp/chap-secrets
     ;;
     4) #Добавить правила для работы VPN в IPTables
-    whatismyip_full    
+    whatismyip_full
     iptables -I INPUT -p 47 -j ACCEPT
     iptables -I OUTPUT -p 47 -j ACCEPT
 	openport in tcp 1723
@@ -2093,7 +2094,7 @@ END
     myread_yn ans
     case "$ans" in
       y|Y)
-      iptables_save  
+      iptables_save
       ;;
     esac
     br
@@ -2307,7 +2308,7 @@ END
 	echo "Укажите логин пользователя:"
 	read login
 	login_lower=$(echo $login | tr [:upper:] [:lower:]) #Перевели логин в нижний регстр, без этого авторизация вообще не будет проходить
-	htpasswd /etc/squid/internet_users $login_lower    
+	htpasswd /etc/squid/internet_users $login_lower
 	br
 	echo "Пользователь $login был успешно добавлен в файл настроек"
 	wait
@@ -2323,7 +2324,7 @@ END
     br
     wait
     edit /etc/squid/internet_users
-    ;;    
+    ;;
     7) #Перезапустить сервис Proxy (Squid)
     service squid restart
     echo 'Готово'
@@ -2370,14 +2371,14 @@ myread_dig pick
         uninstall $answer
         br
         echo "Готово."
-        wait    
+        wait
     fi
     ;;
     4) #Посмотреть сколько свободного места на диске
     br
     df -h
     br
-    wait    
+    wait
     ;;
     0)
     chosen=0
@@ -2430,7 +2431,7 @@ myread_dig pick
 		br
 		echo "Готово. Логи были очищены и было освобождено $freespace Мб."
 		br
-		wait    
+		wait
     ;;
     esac
     ;;
@@ -2447,7 +2448,7 @@ myread_dig pick
 	br
     df -h
     br
-    wait    
+    wait
     ;;
     0)
     chosen=0
