@@ -94,8 +94,7 @@ kastom()
 	##=============================================
 }
 
-menu1()
-{
+
 while true; do
 read -e -p "install kastom (y/n)? " rsn
 	case $rsn in
@@ -103,9 +102,5 @@ read -e -p "install kastom (y/n)? " rsn
 		[Nn]* ) exit;
 	esac
 done
-
 kastom
 
-}
-
-menu1
