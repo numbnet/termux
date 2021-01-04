@@ -45,6 +45,9 @@ esac
 while true; do
 read -e -p "Restart your server now to complete the install (y/n)? " rsn
   case $rsn in
+    [1]* ) echo "1";exit;;
+    [2]* ) echo "2";exit;;
+    [3]* ) echo "3";exit;;
     [Yy]* ) break;;
     [Nn]* ) echo "NO";exit;
   esac
