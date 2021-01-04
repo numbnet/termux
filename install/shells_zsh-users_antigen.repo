@@ -1,0 +1,7 @@
+[shells_zsh-users_antigen]
+name=antigen (CentOS_6)
+type=rpm-md
+baseurl=http://download.opensuse.org/repositories/shells:/zsh-users:/antigen/CentOS_6/
+gpgcheck=1
+gpgkey=http://download.opensuse.org/repositories/shells:/zsh-users:/antigen/CentOS_6/repodata/repomd.xml.key
+enabled=1

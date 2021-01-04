@@ -1,0 +1,3 @@
+#! /bash/
+
+bash $HOME/is_installed.sh

@@ -1,0 +1,5 @@
+#!/bin/bash
+#!is_installed.sh
+
+bash $HOME/is_installed.sh
+exit 0
