@@ -16,7 +16,7 @@ read n
 case $n in
   1)
 function BACKUPRESTIC {
-    
+
 echo '## #################### ##'
 echo '##  ==BACKUP= =RESTIC== ##'
 echo '## #################### ##'
@@ -30,9 +30,9 @@ termux-setup-storage
 # mkdir -p $HOME/storage/emulated
 # ln -s /storage/emulated/0 $HOME/storage/emulated/0
 
-# create dir Repo RESTIC
-###########################
+## create dir Repo RESTIC
 function VARIABLERESTIC {
+DATA="$(date +%Y%m%d_%H%M%S)"
 TMPDIR=$PREFIX/tmp
 XDG_CACHE_HOME=$HOME/.cache
 XDG_TMP_HOME=$HOME/.tmp
@@ -59,7 +59,8 @@ if [[ ! -e $RESTIC_REPOSITORY ]];
 			elif [[ ! -d $RESTIC_REPOSITORY ]];
 	then
 		echo "$RESTIC_REPOSITORY exists, but is not a dir" 1>&2
-		# rm -rf $RESTIC_REPOSITORY
+
+    # rm -rf $RESTIC_REPOSITORY
 		# mkdir -p $RESTIC_REPOSITORY
 fi
 
@@ -88,7 +89,7 @@ fi
 
 # Notice: restic is for advanced users only. While it provides more features than tar, it is harder in use. Most people will use it in scripts rather than manually in the command line. Instructions here provided only as an example. environment variable permanently is put below statement in your script,
 
-# if [[ ! -d "$VARNAME" ]]; then 
+# if [[ ! -d "$VARNAME" ]]; then
 #    export VARNAME="$VARVALUE"
 #    echo 'export "$VARNAME"="$VARVALUE"' >> ~/.bashrc
 # fi

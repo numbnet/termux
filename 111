@@ -58,25 +58,25 @@ git clone https://github.com/numbnet/zsh-completions.git ${ZSH_CUSTOM:-~/.oh-my-
 function mkhometmp {
 
 if [[ ! -e $XDG_TMP_HOME ]];
-	then
-	# termux-setup-storage
-		mkdir $XDG_TMP_HOME
-		mkdir $XDG_CACHE_HOME
-			elif [[ ! -d $XDG_TMP_HOME ]];
-	then
-		echo "$XDG_TMP_HOME exists, but is not a dir" 1>&2
+  then
+  # termux-setup-storage
+    mkdir $XDG_TMP_HOME
+    mkdir $XDG_CACHE_HOME
+      elif [[ ! -d $XDG_TMP_HOME ]];
+  then
+    echo "$XDG_TMP_HOME exists, but is not a dir" 1>&2
 fi
 }
 
 
 function TermSetStor {
 if [[ ! -e $TERM_STORAGE ]];
-	then
-	termux-setup-storage | sleep 10;
-		# mkdir
-			elif [[ ! -d $TERM_STORAGE ]];
-	then
-		echo "$TERM_STORAGE существует, это не каталог" 1>&2
+  then
+  termux-setup-storage | sleep 10;
+    # mkdir
+      elif [[ ! -d $TERM_STORAGE ]];
+  then
+    echo "$TERM_STORAGE существует, это не каталог" 1>&2
 fi
 
 }
