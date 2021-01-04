@@ -3,17 +3,6 @@
 ####   1Etap.sh    ####
 # https://gist.githubusercontent.com/numbnet/16283d639aa316c8a1925c779dbd225c/raw/e44a093421e9988ffcfee7c43b2da95b5be98b57/1Etap.sh
 
-menu()
-{
-while true; do
-read -e -p "Restart your server now to complete the install (y/n)? " rsn
-	case $rsn in
-		[Yy]* ) break;;
-		[Nn]* ) exit;
-	esac
-done
-}
-
 kastom()
 {
 	##=============================================##
@@ -105,4 +94,18 @@ kastom()
 	##=============================================
 }
 
+menu1()
+{
+while true; do
+read -e -p "install kastom (y/n)? " rsn
+	case $rsn in
+		[Yy]* ) break;;
+		[Nn]* ) exit;
+	esac
+done
 
+kastom
+
+}
+
+menu1
